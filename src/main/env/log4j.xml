@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+    <!-- Default Appenders used by all logging -->
+    <appender name="Console" class="org.apache.log4j.ConsoleAppender">
+        <param name="Threshold" value="DEBUG"/>
+        <layout class="org.apache.log4j.EnhancedPatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd'T'HH:mm:ssZ} %c{1.} - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="AspectProfile" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="${catalina.home}/logs/method-stats.csv"/>
+        <param name="Threshold" value="TRACE"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd'T'HH:mm:ssZ},%m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="FilterProfile" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="${catalina.home}/logs/servlet-stats.csv"/>
+        <param name="Threshold" value="TRACE"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{yyyy-MM-dd'T'HH:mm:ssZ},%m%n"/>
+        </layout>
+    </appender>
+
+
+    <!-- Categories -->
+
+    <category name="com">
+        <priority value="ERROR"/>
+    </category>
+
+    <category name="org">
+        <priority value="ERROR"/>
+    </category>
+
+    <category name="net">
+        <priority value="ERROR"/>
+    </category>
+
+    <category name="org.bongiorno">
+        <priority value="ERROR"/>
+    </category>
+
+    <category name="org.bongiorno.common.aspects.actions.ProfileLoggingAction">
+        <priority value="TRACE"/>
+        <appender-ref ref="AspectProfile"/>
+    </category>
+
+    <category name="org.bongiorno.ws.core.server.filters.RecordingFilter">
+        <priority value="TRACE"/>
+        <!--<appender-ref ref="HttpErrors"/>-->
+    </category>
+
+    <category name="org.bongiorno.ws.profiling.filter">
+        <priority value="TRACE"/>
+        <appender-ref ref="FilterProfile"/>
+    </category>
+
+    <category name="org.springframework.aop.framework.Cglib2AopProxy">
+        <priority value="ERROR"/>
+    </category>
+
+    <category name="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <priority value="ERROR"/>
+    </category>
+
+    <category name="org.springframework.security.authentication.event.LoggerListener">
+        <priority value="OFF"/>
+        <appender-ref ref="Console"/>
+    </category>
+
+    <category name="httpclient.wire">
+        <priority value="ERROR"/>
+    </category>
+
+    <logger name="org.springframework.web.context.support.XmlWebApplicationContext">
+        <level value="ERROR"/>
+        <appender-ref ref="Console"/>
+    </logger>
+
+    <logger name="org.bongiorno.ws.core.client.RelativeRestOperations">
+        <level value="ERROR"/>
+        <appender-ref ref="Console"/>
+    </logger>
+    <category name="org.apache.commons.httpclient.HttpClient">
+        <priority value="ERROR"/>
+    </category>
+
+    <!--Unless otherwise specified, all logging goes through the root item-->
+    <root>
+        <priority value="ERROR"/>
+        <appender-ref ref="Console"/>
+    </root>
+
+</log4j:configuration>
+

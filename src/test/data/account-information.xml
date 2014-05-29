@@ -1,0 +1,37 @@
+<TwilioResponse>
+    <Account>
+        <Sid>:mysid</Sid>
+        <OwnerAccountSid>:mysid</OwnerAccountSid>
+        <FriendlyName>my Account</FriendlyName>
+        <Status>active</Status>
+        <DateCreated>Tue, 20 May 2014 23:44:17 +0000</DateCreated>
+        <DateUpdated>Wed, 28 May 2014 22:20:41 +0000</DateUpdated>
+        <AuthToken>bd02cf790a08d9223d4044390b25b0f7</AuthToken>
+        <Type>Trial</Type>
+        <Uri>/2010-04-01/Accounts/:mysid</Uri>
+        <SubresourceUris>
+            <Applications>/2010-04-01/Accounts/mysid/Applications</Applications>
+            <AuthorizedConnectApps>/2010-04-01/Accounts/:mysid/AuthorizedConnectApps
+            </AuthorizedConnectApps>
+            <AvailablePhoneNumbers>/2010-04-01/Accounts/:mysid/AvailablePhoneNumbers
+            </AvailablePhoneNumbers>
+            <Calls>/2010-04-01/Accounts/:mysid/Calls</Calls>
+            <Conferences>/2010-04-01/Accounts/:mysid/Conferences</Conferences>
+            <ConnectApps>/2010-04-01/Accounts/:mysid/ConnectApps</ConnectApps>
+            <IncomingPhoneNumbers>/2010-04-01/Accounts/:mysid/IncomingPhoneNumbers
+            </IncomingPhoneNumbers>
+            <Media>/2010-04-01/Accounts/:mysid/Media</Media>
+            <Messages>/2010-04-01/Accounts/:mysid/Messages</Messages>
+            <Notifications>/2010-04-01/Accounts/:mysid/Notifications</Notifications>
+            <OutgoingCallerIds>/2010-04-01/Accounts/:mysid/OutgoingCallerIds
+            </OutgoingCallerIds>
+            <Queues>/2010-04-01/Accounts/:mysid/Queues</Queues>
+            <Recordings>/2010-04-01/Accounts/:mysid/Recordings</Recordings>
+            <Sandbox>/2010-04-01/Accounts/:mysid/Sandbox</Sandbox>
+            <SIP>/2010-04-01/Accounts/:mysid/SIP</SIP>
+            <SMSMessages>/2010-04-01/Accounts/:mysid/SMS/Messages</SMSMessages>
+            <Transcriptions>/2010-04-01/Accounts/:mysid/Transcriptions</Transcriptions>
+            <Usage>/2010-04-01/Accounts/:mysid/Usage</Usage>
+        </SubresourceUris>
+    </Account>
+</TwilioResponse>

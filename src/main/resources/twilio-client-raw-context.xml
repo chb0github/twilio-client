@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <import resource="classpath:http-header-beans.xml"/>
+    <import resource="classpath:rest-core-context.xml"/>
+
+    <bean id="messageServiceRaw" class="org.bongiorno.ws.core.client.RelativeRestOperations">
+        <constructor-arg value="${twilio.server.url}"/>
+        <constructor-arg ref="jsonAccept"/>
+        <property name="headerStrategy">
+            <bean class="org.bongiorno.ws.core.client.headers.CompositeHeader">
+                <constructor-arg name="calls">
+                    <set>
+                        <bean class="org.bongiorno.ws.core.client.headers.BasicAuthHeader">
+
+                            <constructor-arg name="userName" value="${twilio.client.account.sid}"/>
+                            <constructor-arg name="password" value="${twilio.client.account.token}"/>
+                        </bean>
+                        <ref bean="formEncodedContentType"/>
+                        <ref bean="jsonAccept"/>
+                    </set>
+                </constructor-arg>
+            </bean>
+        </property>
+        <property name="httpConnectionManagerParams" ref="defaultConnectionManager"/>
+        <property name="errorHandler" ref="defaultErrorHandlers"/>
+        <property name="messageConverters" ref="defaultMessageConverters"/>
+        <property name="paramConverters" ref="defaultClientParameterConverters"/>
+        <property name="defaultUriVariables">
+            <util:map map-class="java.util.LinkedHashMap">
+                <entry key="AccountSid" value="${twilio.client.account.sid}"/>
+            </util:map>
+        </property>
+    </bean>
+</beans>

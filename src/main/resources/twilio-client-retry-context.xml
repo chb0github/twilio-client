@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/aop   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+       ">
+
+    <bean id="retryAdvice" class="org.springframework.retry.interceptor.RetryOperationsInterceptor">
+        <property name="retryOperations">
+            <bean class="org.springframework.retry.support.RetryTemplate">
+                <property name="retryPolicy">
+                    <bean class="org.springframework.retry.policy.ExceptionClassifierRetryPolicy">
+                        <property name="policyMap">
+                            <map>
+                                <entry key="java.lang.Exception"
+                                       value="org.springframework.retry.policy.AlwaysRetryPolicy"/>
+                            </map>
+                        </property>
+                    </bean>
+                </property>
+                <property name="backOffPolicy">
+                    <bean class="org.springframework.retry.backoff.ExponentialRandomBackOffPolicy"/>
+                </property>
+            </bean>
+        </property>
+    </bean>
+
+    <aop:config>
+        <aop:pointcut id="clientMethods" expression="execution(* org.bongiorno.ws.client.TwilioClient.*(..))"/>
+        <aop:advisor pointcut-ref="clientMethods" advice-ref="retryAdvice" order="0"/>
+    </aop:config>
+</beans>
