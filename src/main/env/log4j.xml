@@ -76,7 +76,7 @@
     </category>
 
     <category name="httpclient.wire">
-        <priority value="ERROR"/>
+        <priority value="DEBUG"/>
     </category>
 
     <logger name="org.springframework.web.context.support.XmlWebApplicationContext">
