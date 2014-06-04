@@ -72,7 +72,7 @@
             <!-- This module needs to be stripped down to 2 artifacts: 1 for client 1 for server-->
             <groupId>org.bongiorno</groupId>
             <artifactId>ws-core</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
+            <version>1.0.1</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.security</groupId>
